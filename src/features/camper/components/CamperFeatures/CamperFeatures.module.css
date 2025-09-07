@@ -1,18 +1,18 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-4);
+  gap: var(--tt-gap-400);
 }
 
 .title {
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-primary);
+  font-size: var(--tt-fs-xl);
+  font-weight: var(--tt-w-bold);
+  color: var(--tt-text);
   margin: 0;
 }
 
 .empty {
-  color: var(--color-text-secondary);
+  color: var(--tt-muted);
   font-style: italic;
   margin: 0;
 }
@@ -20,37 +20,37 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--spacing-4);
+  gap: var(--tt-gap-400);
 }
 
 .feature {
   display: flex;
   align-items: center;
-  gap: var(--spacing-3);
-  padding: var(--spacing-3);
-  background-color: var(--color-background-secondary);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-border);
+  gap: var(--tt-gap-300);
+  padding: var(--tt-gap-300);
+  background-color: var(--tt-bg);
+  border-radius: var(--tt-radius-lg);
+  border: 1px solid var(--tt-line);
 }
 
 .featureIcon {
-  font-size: var(--font-size-xl);
+  font-size: var(--tt-fs-xl);
   flex-shrink: 0;
 }
 
 .featureContent {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-1);
+  gap: var(--tt-gap-100);
 }
 
 .featureLabel {
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-text-primary);
+  font-size: var(--tt-fs-sm);
+  font-weight: var(--tt-w-med);
+  color: var(--tt-text);
 }
 
 .featureValue {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-secondary);
+  font-size: 12px;
+  color: var(--tt-muted);
 }

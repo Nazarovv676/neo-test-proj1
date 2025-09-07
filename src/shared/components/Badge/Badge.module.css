@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-full);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--tt-w-med);
   text-align: center;
   white-space: nowrap;
   transition: all var(--transition-fast);
@@ -12,49 +12,49 @@
 /* Variants */
 .default {
   background-color: var(--color-secondary);
-  color: var(--color-text-primary);
+  color: var(--tt-text);
 }
 
 .primary {
-  background-color: var(--color-primary);
+  background-color: var(--tt-accent);
   color: white;
 }
 
 .secondary {
-  background-color: var(--color-background-tertiary);
-  color: var(--color-text-secondary);
+  background-color: var(--tt-bg);
+  color: var(--tt-muted);
 }
 
 .success {
-  background-color: var(--color-success);
+  background-color: #12b76a;
   color: white;
 }
 
 .warning {
-  background-color: var(--color-warning);
+  background-color: #f79009;
   color: white;
 }
 
 .error {
-  background-color: var(--color-error);
+  background-color: #f04438;
   color: white;
 }
 
 /* Sizes */
 .sm {
-  padding: var(--spacing-1) var(--spacing-2);
-  font-size: var(--font-size-xs);
+  padding: var(--tt-gap-100) var(--tt-gap-200);
+  font-size: 12px;
   min-height: 20px;
 }
 
 .md {
-  padding: var(--spacing-1) var(--spacing-3);
-  font-size: var(--font-size-sm);
+  padding: var(--tt-gap-100) var(--tt-gap-300);
+  font-size: var(--tt-fs-sm);
   min-height: 24px;
 }
 
 .lg {
-  padding: var(--spacing-2) var(--spacing-4);
-  font-size: var(--font-size-base);
+  padding: var(--tt-gap-200) var(--tt-gap-400);
+  font-size: var(--tt-fs-body);
   min-height: 28px;
 }

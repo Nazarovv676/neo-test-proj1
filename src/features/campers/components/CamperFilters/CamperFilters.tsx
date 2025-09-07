@@ -1,26 +1,24 @@
-import { Button, Checkbox, Input, Select } from '@/shared/components';
-import { debounce } from '@/shared/lib';
+import { resetList } from '@/features/campers/campers.slice';
+import { fetchCampers } from '@/features/campers/campers.thunks';
+import { useAppDispatch } from '@/shared/hooks/redux';
 import type { Filters } from '@/shared/types';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import styles from './CamperFilters.module.css';
 
-const CAMPER_TYPES = [
-  { value: 'van', label: 'Van' },
-  { value: 'fully-integrated', label: 'Fully Integrated' },
-  { value: 'alcove', label: 'Alcove' },
-  { value: 'panelTruck', label: 'Panel Truck' },
+
+const VEHICLE_EQUIPMENT = [
+  { key: 'airConditioner', label: 'AC', icon: '❄️' },
+  { key: 'automatic', label: 'Automatic', icon: '⚙️' },
+  { key: 'kitchen', label: 'Kitchen', icon: '🍳' },
+  { key: 'TV', label: 'TV', icon: '📺' },
+  { key: 'bathroom', label: 'Bathroom', icon: '🚿' },
 ];
 
-const FEATURES = [
-  { key: 'airConditioner', label: 'AC' },
-  { key: 'kitchen', label: 'Kitchen' },
-  { key: 'bathroom', label: 'Bathroom' },
-  { key: 'TV', label: 'TV' },
-  { key: 'radio', label: 'Radio' },
-  { key: 'microwave', label: 'Microwave' },
-  { key: 'gas', label: 'Gas' },
-  { key: 'water', label: 'Water' },
+const VEHICLE_TYPES = [
+  { key: 'van', label: 'Van', icon: '🚐' },
+  { key: 'fully-integrated', label: 'Fully Integrated', icon: '🏠' },
+  { key: 'alcove', label: 'Alcove', icon: '🏕️' },
 ];
 
 // Parse filters from URL search params
@@ -55,13 +53,9 @@ const buildSearchParamsFromFilters = (filters: Filters): URLSearchParams => {
   return params;
 };
 
-// Stable serializer for comparing search params
-const stableSerialize = (params: URLSearchParams): string => {
-  const sorted = Array.from(params.entries()).sort(([a], [b]) => a.localeCompare(b));
-  return new URLSearchParams(sorted).toString();
-};
 
 export const CamperFilters: React.FC = () => {
+  const dispatch = useAppDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
   
   // Parse current filters from URL
@@ -75,103 +69,103 @@ export const CamperFilters: React.FC = () => {
     setUiFilters(urlFilters);
   }, [urlFilters]);
 
-  // Debounced writer to URL
-  const updateUrlFilters = useCallback(
-    (newFilters: Filters) => {
-      const newParams = buildSearchParamsFromFilters(newFilters);
-      const newSerialized = stableSerialize(newParams);
-      const currentSerialized = stableSerialize(searchParams);
-      
-      if (newSerialized !== currentSerialized) {
-        setSearchParams(newParams, { replace: true });
-      }
-    },
-    [searchParams, setSearchParams]
-  );
 
-  const debouncedUpdateUrl = useMemo(
-    () => debounce(updateUrlFilters, 300),
-    [updateUrlFilters]
-  );
 
   // Handle location input changes
   const handleLocationChange = (value: string) => {
-    const newFilters = { ...uiFilters, location: value || undefined };
-    setUiFilters(newFilters);
-    debouncedUpdateUrl(newFilters);
+    setUiFilters(prev => ({ ...prev, location: value || undefined }));
   };
 
   // Handle type selection changes
   const handleTypeChange = (value: string) => {
     const type = value as Filters['type'] || undefined;
-    const newFilters = { ...uiFilters, type };
-    setUiFilters(newFilters);
-    updateUrlFilters(newFilters); // Immediate update for selection
+    setUiFilters(prev => ({ ...prev, type }));
   };
 
   // Handle feature toggle changes
   const handleFeatureToggle = (feature: string) => {
-    const newFeatures = uiFilters.features.includes(feature)
-      ? uiFilters.features.filter((f) => f !== feature)
-      : [...uiFilters.features, feature];
-    
-    const newFilters = { ...uiFilters, features: newFeatures };
-    setUiFilters(newFilters);
-    updateUrlFilters(newFilters); // Immediate update for selection
+    setUiFilters(prev => {
+      const newFeatures = prev.features.includes(feature)
+        ? prev.features.filter((f) => f !== feature)
+        : [...prev.features, feature];
+      return { ...prev, features: newFeatures };
+    });
   };
 
-  // Handle reset filters
-  const handleResetFilters = () => {
-    const emptyFilters: Filters = { location: undefined, type: undefined, features: [] };
-    setUiFilters(emptyFilters);
-    setSearchParams({}, { replace: true });
+  // Handle search button click
+  const handleSearch = () => {
+    const newParams = buildSearchParamsFromFilters(uiFilters);
+    setSearchParams(newParams, { replace: true });
+    dispatch(resetList());
+    dispatch(fetchCampers({ page: 1, limit: 12, filters: uiFilters }));
   };
 
   return (
     <div className={styles.filters}>
-      <div className={styles.header}>
-        <h2 className={styles.title}>Filters</h2>
-        <Button variant="ghost" size="sm" onClick={handleResetFilters} type="button">
-          Reset
-        </Button>
+      <h2 className={styles.title}>Filters</h2>
+      
+      <div className={styles.filterGroup}>
+        <label htmlFor="location" className={styles.inputLabel}>Location</label>
+        <input
+          id="location"
+          type="text"
+          placeholder="Enter location"
+          value={uiFilters.location ?? ""}
+          onChange={(e) => handleLocationChange(e.target.value)}
+          className={styles.locationInput}
+        />
       </div>
-
-      <div className={styles.content}>
-        <div className={styles.section}>
-          <Input
-            label="Location"
-            placeholder="Kyiv, Ukraine"
-            value={uiFilters.location || ''}
-            onChange={(e) => handleLocationChange(e.target.value)}
-            fullWidth
-          />
+      
+      <div className={styles.groups}>
+        <div className={styles.group}>
+          <h3 className={styles.groupTitle}>Vehicle equipment</h3>
+          <div className={styles.badges}>
+            {VEHICLE_EQUIPMENT.map((feature) => (
+              <label key={feature.key} className={styles.badgeLabel}>
+                <input
+                  type="checkbox"
+                  className={styles.badgeInput}
+                  checked={uiFilters.features.includes(feature.key)}
+                  onChange={() => handleFeatureToggle(feature.key)}
+                />
+                <span className={`${styles.badge} ${uiFilters.features.includes(feature.key) ? styles.badgeActive : ''}`}>
+                  <span className={styles.badgeIcon}>{feature.icon}</span>
+                  <span className={styles.badgeText}>{feature.label}</span>
+                </span>
+              </label>
+            ))}
+          </div>
         </div>
 
-        <div className={styles.section}>
-          <Select
-            label="Body type"
-            placeholder="Select type"
-            options={CAMPER_TYPES}
-            value={uiFilters.type || ''}
-            onChange={(e) => handleTypeChange(e.target.value)}
-            fullWidth
-          />
-        </div>
-
-        <div className={styles.section}>
-          <h3 className={styles.sectionTitle}>Equipment</h3>
-          <div className={styles.features}>
-            {FEATURES.map((feature) => (
-              <Checkbox
-                key={feature.key}
-                label={feature.label}
-                checked={uiFilters.features.includes(feature.key)}
-                onChange={() => handleFeatureToggle(feature.key)}
-              />
+        <div className={styles.group}>
+          <h3 className={styles.groupTitle}>Vehicle type</h3>
+          <div className={styles.badges}>
+            {VEHICLE_TYPES.map((type) => (
+              <label key={type.key} className={styles.badgeLabel}>
+                <input
+                  type="radio"
+                  name="vehicleType"
+                  className={styles.badgeInput}
+                  checked={uiFilters.type === type.key}
+                  onChange={() => handleTypeChange(type.key)}
+                />
+                <span className={`${styles.badge} ${uiFilters.type === type.key ? styles.badgeActive : ''}`}>
+                  <span className={styles.badgeIcon}>{type.icon}</span>
+                  <span className={styles.badgeText}>{type.label}</span>
+                </span>
+              </label>
             ))}
           </div>
         </div>
       </div>
+
+      <button 
+        onClick={handleSearch} 
+        type="button"
+        className={styles.searchButton}
+      >
+        Search
+      </button>
     </div>
   );
 };

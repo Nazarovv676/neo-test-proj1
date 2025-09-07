@@ -1,18 +1,18 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-6);
+  gap: var(--tt-gap-600);
 }
 
 .title {
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-primary);
+  font-size: var(--tt-fs-xl);
+  font-weight: var(--tt-w-bold);
+  color: var(--tt-text);
   margin: 0;
 }
 
 .empty {
-  color: var(--color-text-secondary);
+  color: var(--tt-muted);
   font-style: italic;
   margin: 0;
 }
@@ -20,10 +20,10 @@
 .summary {
   display: flex;
   align-items: center;
-  padding: var(--spacing-4);
-  background-color: var(--color-background-secondary);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-border);
+  padding: var(--tt-gap-400);
+  background-color: var(--tt-bg);
+  border-radius: var(--tt-radius-lg);
+  border: 1px solid var(--tt-line);
 }
 
 .rating {
@@ -34,53 +34,53 @@
 .list {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-4);
+  gap: var(--tt-gap-400);
 }
 
 .review {
-  padding: var(--spacing-4);
-  background-color: var(--color-background);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
+  padding: var(--tt-gap-400);
+  background-color: var(--tt-white);
+  border: 1px solid var(--tt-line);
+  border-radius: var(--tt-radius-lg);
 }
 
 .reviewHeader {
-  margin-bottom: var(--spacing-3);
+  margin-bottom: var(--tt-gap-300);
 }
 
 .reviewer {
   display: flex;
   align-items: center;
-  gap: var(--spacing-3);
+  gap: var(--tt-gap-300);
 }
 
 .avatar {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: var(--color-primary);
+  background-color: var(--tt-accent);
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: var(--font-weight-semibold);
-  font-size: var(--font-size-base);
+  font-weight: var(--tt-w-bold);
+  font-size: var(--tt-fs-body);
 }
 
 .reviewerInfo {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-1);
+  gap: var(--tt-gap-100);
 }
 
 .reviewerName {
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-primary);
+  font-size: var(--tt-fs-sm);
+  font-weight: var(--tt-w-bold);
+  color: var(--tt-text);
 }
 
 .comment {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-  line-height: var(--line-height-relaxed);
+  font-size: var(--tt-fs-sm);
+  color: var(--tt-muted);
+  line-height: 1.75;
 }

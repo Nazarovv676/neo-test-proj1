@@ -77,7 +77,7 @@
 
 /* Active link (red) */
 .active {
-  color: var(--color-danger, #e74c3c);
+  color: var(--tt-accent);
 }
 
 /* Right side placeholder */

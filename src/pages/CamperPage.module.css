@@ -6,26 +6,26 @@
 
 .main {
   flex: 1;
-  padding: var(--spacing-8) 0;
+  padding: var(--tt-gap-800) 0;
 }
 
 .content {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--spacing-8);
+  gap: var(--tt-gap-800);
 }
 
 @media (min-width: 1024px) {
   .content {
     grid-template-columns: 1fr 400px;
-    gap: var(--spacing-12);
+    gap: var(--tt-gap-1200);
   }
 }
 
 .mainContent {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-8);
+  gap: var(--tt-gap-800);
 }
 
 .sidebar {
@@ -42,43 +42,43 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: var(--spacing-16);
+  padding: var(--tt-gap-1600);
 }
 
 .error {
   text-align: center;
-  padding: var(--spacing-16);
+  padding: var(--tt-gap-1600);
 }
 
 .error h2 {
-  color: var(--color-error);
-  margin-bottom: var(--spacing-4);
+  color: #f04438;
+  margin-bottom: var(--tt-gap-400);
 }
 
 .error p {
-  color: var(--color-text-secondary);
-  margin-bottom: var(--spacing-6);
+  color: var(--tt-muted);
+  margin-bottom: var(--tt-gap-600);
 }
 
 .backButton {
-  background-color: var(--color-primary);
+  background-color: var(--tt-accent);
   color: white;
   border: none;
-  padding: var(--spacing-3) var(--spacing-6);
-  border-radius: var(--radius-lg);
-  font-weight: var(--font-weight-medium);
+  padding: var(--tt-gap-300) var(--tt-gap-600);
+  border-radius: var(--tt-radius-lg);
+  font-weight: var(--tt-w-med);
   cursor: pointer;
   transition: background-color var(--transition-fast);
 }
 
 .backButton:hover {
-  background-color: var(--color-primary-dark);
+  background-color: var(--tt-accent-hover);
 }
 
 .header {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-4);
+  gap: var(--tt-gap-400);
 }
 
 @media (min-width: 768px) {
@@ -94,23 +94,23 @@
 }
 
 .title {
-  font-size: var(--font-size-3xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
-  margin: 0 0 var(--spacing-2) 0;
-  line-height: var(--line-height-tight);
+  font-size: var(--tt-fs-3xl);
+  font-weight: var(--tt-w-bold);
+  color: var(--tt-text);
+  margin: 0 0 var(--tt-gap-200) 0;
+  line-height: var(--tt-lh-h2);
 }
 
 .rating {
-  margin-bottom: var(--spacing-2);
+  margin-bottom: var(--tt-gap-200);
 }
 
 .location {
   display: flex;
   align-items: center;
-  gap: var(--spacing-1);
-  font-size: var(--font-size-base);
-  color: var(--color-text-secondary);
+  gap: var(--tt-gap-100);
+  font-size: var(--tt-fs-body);
+  color: var(--tt-muted);
 }
 
 .priceSection {
@@ -119,9 +119,9 @@
 }
 
 .price {
-  font-size: var(--font-size-3xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-primary);
+  font-size: var(--tt-fs-3xl);
+  font-weight: var(--tt-w-bold);
+  color: var(--tt-accent);
 }
 
 .gallery {
@@ -131,45 +131,45 @@
 .features {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-4);
+  gap: var(--tt-gap-400);
 }
 
 .featureBadges {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--spacing-2);
+  gap: var(--tt-gap-200);
 }
 
 .tabs {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-4);
+  gap: var(--tt-gap-400);
 }
 
 .tabHeader {
   display: flex;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--tt-line);
 }
 
 .tab {
   background: none;
   border: none;
-  padding: var(--spacing-3) var(--spacing-6);
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-text-secondary);
+  padding: var(--tt-gap-300) var(--tt-gap-600);
+  font-size: var(--tt-fs-body);
+  font-weight: var(--tt-w-med);
+  color: var(--tt-muted);
   cursor: pointer;
   border-bottom: 2px solid transparent;
   transition: all var(--transition-fast);
 }
 
 .tab:hover {
-  color: var(--color-text-primary);
+  color: var(--tt-text);
 }
 
 .tab.active {
-  color: var(--color-primary);
-  border-bottom-color: var(--color-primary);
+  color: var(--tt-accent);
+  border-bottom-color: var(--tt-accent);
 }
 
 .tabContent {
@@ -179,5 +179,5 @@
 .tabPanel {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-8);
+  gap: var(--tt-gap-800);
 }

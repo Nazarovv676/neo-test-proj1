@@ -1,21 +1,21 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-4);
+  gap: var(--tt-gap-400);
 }
 
 .title {
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-primary);
+  font-size: var(--tt-fs-xl);
+  font-weight: var(--tt-w-bold);
+  color: var(--tt-text);
   margin: 0;
 }
 
 .table {
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
+  border: 1px solid var(--tt-line);
+  border-radius: var(--tt-radius-lg);
   overflow: hidden;
 }
 
@@ -23,8 +23,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--spacing-4);
-  border-bottom: 1px solid var(--color-border);
+  padding: var(--tt-gap-400);
+  border-bottom: 1px solid var(--tt-line);
 }
 
 .row:last-child {
@@ -32,17 +32,17 @@
 }
 
 .row:nth-child(even) {
-  background-color: var(--color-background-secondary);
+  background-color: var(--tt-bg);
 }
 
 .label {
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-text-secondary);
+  font-size: var(--tt-fs-sm);
+  font-weight: var(--tt-w-med);
+  color: var(--tt-muted);
 }
 
 .value {
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-primary);
+  font-size: var(--tt-fs-sm);
+  font-weight: var(--tt-w-bold);
+  color: var(--tt-text);
 }

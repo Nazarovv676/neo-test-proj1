@@ -1,7 +1,7 @@
 .rating {
   display: inline-flex;
   align-items: center;
-  gap: var(--spacing-2);
+  gap: var(--tt-gap-200);
 }
 
 .stars {
@@ -12,20 +12,20 @@
 
 .star {
   display: inline-block;
-  color: var(--color-border);
+  color: var(--tt-line);
   transition: color var(--transition-fast);
   line-height: 1;
 }
 
 .star.filled {
-  color: var(--color-accent);
+  color: var(--tt-star);
 }
 
 .star.halfFilled {
   background: linear-gradient(
     90deg,
-    var(--color-accent) 50%,
-    var(--color-border) 50%
+    var(--tt-star) 50%,
+    var(--tt-line) 50%
   );
   background-clip: text;
   -webkit-background-clip: text;
@@ -33,7 +33,7 @@
 }
 
 .star.empty {
-  color: var(--color-border);
+  color: var(--tt-line);
 }
 
 /* Sizes */
@@ -50,14 +50,14 @@
 }
 
 .number {
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-text-primary);
+  font-size: var(--tt-fs-sm);
+  font-weight: var(--tt-w-med);
+  color: var(--tt-text);
   line-height: 1;
 }
 
 .count {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
+  font-size: var(--tt-fs-sm);
+  color: var(--tt-muted);
   line-height: 1;
 }

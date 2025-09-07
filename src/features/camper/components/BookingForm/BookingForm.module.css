@@ -1,47 +1,47 @@
 .container {
-  background-color: var(--color-background);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-xl);
-  padding: var(--spacing-6);
+  background-color: var(--tt-white);
+  border: 1px solid var(--tt-line);
+  border-radius: var(--tt-radius-lg);
+  padding: var(--tt-gap-600);
   position: sticky;
-  top: calc(var(--spacing-20) + var(--spacing-4));
+  top: calc(var(--tt-gap-2000) + var(--tt-gap-400));
 }
 
 .title {
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-primary);
-  margin: 0 0 var(--spacing-6) 0;
+  font-size: var(--tt-fs-xl);
+  font-weight: var(--tt-w-bold);
+  color: var(--tt-text);
+  margin: 0 0 var(--tt-gap-600) 0;
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-4);
+  gap: var(--tt-gap-400);
 }
 
 .textareaContainer {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-2);
+  gap: var(--tt-gap-200);
 }
 
 .label {
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-text-primary);
-  line-height: var(--line-height-tight);
+  font-size: var(--tt-fs-sm);
+  font-weight: var(--tt-w-med);
+  color: var(--tt-text);
+  line-height: var(--tt-lh-h2);
 }
 
 .textarea {
   width: 100%;
-  padding: var(--spacing-3) var(--spacing-4);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-normal);
-  color: var(--color-text-primary);
-  background-color: var(--color-background);
+  padding: var(--tt-gap-300) var(--tt-gap-400);
+  border: 1px solid var(--tt-line);
+  border-radius: var(--tt-radius-lg);
+  font-size: var(--tt-fs-body);
+  line-height: var(--tt-lh-body);
+  color: var(--tt-text);
+  background-color: var(--tt-white);
   transition: all var(--transition-fast);
   font-family: inherit;
   resize: vertical;
@@ -49,17 +49,17 @@
 }
 
 .textarea::placeholder {
-  color: var(--color-text-muted);
+  color: var(--tt-muted);
 }
 
 .textarea:focus {
   outline: none;
-  border-color: var(--color-primary);
+  border-color: var(--tt-accent);
   box-shadow: 0 0 0 3px rgba(228, 72, 72, 0.1);
 }
 
 .textarea:disabled {
-  background-color: var(--color-background-tertiary);
-  color: var(--color-text-muted);
+  background-color: var(--tt-bg);
+  color: var(--tt-muted);
   cursor: not-allowed;
 }

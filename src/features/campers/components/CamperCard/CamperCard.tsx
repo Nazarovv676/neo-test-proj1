@@ -1,5 +1,4 @@
 import { toggleFavorite } from '@/features/campers/campers.slice';
-import { Badge, Button, Rating } from '@/shared/components';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/redux';
 import { formatPrice, getAvailableFeatures } from '@/shared/lib';
 import type { Camper } from '@/shared/types';
@@ -26,65 +25,56 @@ export const CamperCard: React.FC<CamperCardProps> = ({ camper }) => {
 
 
   return (
-    <div className={styles.card}>
-      <div className={styles.imageContainer}>
+    <article className={styles.card}>
+      <div className={styles.cardMedia}>
         <img
           src={camper.gallery[0] || '/placeholder-camper.jpg'}
           alt={camper.name}
           className={styles.image}
         />
-        <button
-          className={`${styles.favoriteButton} ${isFavorite ? styles.favorited : ''}`}
-          onClick={handleToggleFavorite}
-          aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
-        >
-          ♥
-        </button>
       </div>
 
-      <div className={styles.content}>
-        <div className={styles.header}>
-          <h3 className={styles.title}>{camper.name}</h3>
-          <div className={styles.price}>{formatPrice(camper.price)}</div>
+      <div className={styles.cardBody}>
+        <header className={styles.cardTop}>
+          <h3 className={styles.cardTitle}>{camper.name}</h3>
+          <div className={styles.cardPrice}>{formatPrice(camper.price)}</div>
+          <button
+            className={styles.iconBtn}
+            onClick={handleToggleFavorite}
+            aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+            aria-pressed={isFavorite}
+          >
+            {isFavorite ? '♥' : '♡'}
+          </button>
+        </header>
+
+        <div className={styles.cardMeta}>
+          <span className={styles.metaRating}>
+            <span style={{ color: 'var(--tt-star)' }}>★</span> {camper.rating} ({camper.reviews.length} Reviews)
+          </span>
+          <span className={styles.metaLocation}>📍 {camper.location}</span>
         </div>
 
-        <div className={styles.rating}>
-          <Rating
-            rating={camper.rating}
-            showNumber
-            showCount
-            reviewCount={camper.reviews.length}
-            size="sm"
-          />
-        </div>
+        <p className={styles.cardDesc}>
+          Experience the perfect blend of comfort and adventure with this premium camper.
+        </p>
 
-        <div className={styles.location}>📍 {camper.location}</div>
-
-        <div className={styles.features}>
+        <div className={styles.cardFeatures}>
           {features.slice(0, 4).map((feature) => (
-            <Badge key={feature} variant="secondary" size="sm">
+            <span key={feature} className={styles.chip}>
               {feature}
-            </Badge>
+            </span>
           ))}
-          {features.length > 4 && (
-            <Badge variant="secondary" size="sm">
-              +{features.length - 4} more
-            </Badge>
-          )}
         </div>
 
-        <div className={styles.actions}>
+        <div className={styles.cardActions}>
           <Link to={`/catalog/${camper.id}`} target="_blank" rel="noopener">
-            <Button
-              variant="outline"
-              size="md"
-              fullWidth
-            >
+            <button className={styles.btnPrimary}>
               Show more
-            </Button>
+            </button>
           </Link>
         </div>
       </div>
-    </div>
+    </article>
   );
 };

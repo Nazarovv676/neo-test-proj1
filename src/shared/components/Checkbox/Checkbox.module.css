@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-2);
+  gap: var(--tt-gap-200);
 }
 
 .container.fullWidth {
@@ -11,15 +11,15 @@
 .checkboxWrapper {
   display: flex;
   align-items: flex-start;
-  gap: var(--spacing-3);
+  gap: var(--tt-gap-300);
 }
 
 .checkbox {
   width: 20px;
   height: 20px;
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  background-color: var(--color-background);
+  border: 2px solid var(--tt-line);
+  border-radius: var(--tt-radius-sm);
+  background-color: var(--tt-white);
   cursor: pointer;
   position: relative;
   appearance: none;
@@ -29,8 +29,8 @@
 }
 
 .checkbox:checked {
-  background-color: var(--color-primary);
-  border-color: var(--color-primary);
+  background-color: var(--tt-accent);
+  border-color: var(--tt-accent);
 }
 
 .checkbox:checked::after {
@@ -51,18 +51,18 @@
 }
 
 .checkbox:disabled {
-  background-color: var(--color-background-tertiary);
-  border-color: var(--color-border-light);
+  background-color: var(--tt-bg);
+  border-color: var(--tt-bg);
   cursor: not-allowed;
 }
 
 .checkbox:disabled:checked {
-  background-color: var(--color-text-muted);
-  border-color: var(--color-text-muted);
+  background-color: var(--tt-muted);
+  border-color: var(--tt-muted);
 }
 
 .checkbox.error {
-  border-color: var(--color-error);
+  border-color: #f04438;
 }
 
 .checkbox.error:focus {
@@ -70,29 +70,29 @@
 }
 
 .label {
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-normal);
-  color: var(--color-text-primary);
-  line-height: var(--line-height-normal);
+  font-size: var(--tt-fs-body);
+  font-weight: 400;
+  color: var(--tt-text);
+  line-height: var(--tt-lh-body);
   cursor: pointer;
   user-select: none;
 }
 
 .checkbox:disabled + .label {
-  color: var(--color-text-muted);
+  color: var(--tt-muted);
   cursor: not-allowed;
 }
 
 .errorText {
-  font-size: var(--font-size-sm);
-  color: var(--color-error);
-  line-height: var(--line-height-tight);
-  margin-left: var(--spacing-8);
+  font-size: var(--tt-fs-sm);
+  color: #f04438;
+  line-height: var(--tt-lh-h2);
+  margin-left: var(--tt-gap-800);
 }
 
 .helperText {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-  line-height: var(--line-height-tight);
-  margin-left: var(--spacing-8);
+  font-size: var(--tt-fs-sm);
+  color: var(--tt-muted);
+  line-height: var(--tt-lh-h2);
+  margin-left: var(--tt-gap-800);
 }

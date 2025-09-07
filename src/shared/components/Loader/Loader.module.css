@@ -12,13 +12,13 @@
   bottom: 0;
   background-color: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(2px);
-  z-index: var(--z-modal);
+  z-index: 1050;
 }
 
 /* Spinner */
 .spinner {
-  border: 3px solid var(--color-border);
-  border-top: 3px solid var(--color-primary);
+  border: 3px solid var(--tt-line);
+  border-top: 3px solid var(--tt-accent);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -26,13 +26,13 @@
 /* Dots */
 .dots {
   display: flex;
-  gap: var(--spacing-1);
+  gap: var(--tt-gap-100);
 }
 
 .dot {
   width: 8px;
   height: 8px;
-  background-color: var(--color-primary);
+  background-color: var(--tt-accent);
   border-radius: 50%;
   animation: bounce 1.4s ease-in-out infinite both;
 }
@@ -49,7 +49,7 @@
 .pulse {
   width: 40px;
   height: 40px;
-  background-color: var(--color-primary);
+  background-color: var(--tt-accent);
   border-radius: 50%;
   animation: pulse 1.5s ease-in-out infinite;
 }

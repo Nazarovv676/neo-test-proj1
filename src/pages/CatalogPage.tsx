@@ -68,45 +68,31 @@ export const CatalogPage: React.FC = () => {
   };
 
   return (
-    <div className={styles.page}>
-      <div className="container">
-        <div className={styles.content}>
-          <div className={styles.sidebar}>
-            <CamperFilters />
+    <main className={styles.container}>
+      <aside aria-label="Filters" className={styles.filters}>
+        <CamperFilters />
+      </aside>
+
+      <section aria-label="Results" className={styles.results}>
+        {hasError && (
+          <div className={styles.error}>
+            <p>Error: {error}</p>
           </div>
+        )}
 
-          <div className={styles.results}>
-            <div className={styles.header}>
-              <h1 className={styles.title}>Camper Catalog</h1>
-              {campers.length > 0 && (
-                <p className={styles.count}>
-                  {campers.length}{' '}
-                  {campers.length === 1 ? 'camper' : 'campers'} found
-                </p>
-              )}
-            </div>
-
-            {hasError && (
-              <div className={styles.error}>
-                <p>Error: {error}</p>
-              </div>
-            )}
-
-            {isLoading && campers.length === 0 ? (
-              <div className={styles.loading}>
-                <Loader size="lg" />
-              </div>
-            ) : (
-              <CamperGrid
-                campers={campers}
-                hasMore={hasMore}
-                loading={isLoading}
-                onLoadMore={handleLoadMore}
-              />
-            )}
+        {isLoading && campers.length === 0 ? (
+          <div className={styles.loading}>
+            <Loader size="lg" />
           </div>
-        </div>
-      </div>
-    </div>
+        ) : (
+          <CamperGrid
+            campers={campers}
+            hasMore={hasMore}
+            loading={isLoading}
+            onLoadMore={handleLoadMore}
+          />
+        )}
+      </section>
+    </main>
   );
 };

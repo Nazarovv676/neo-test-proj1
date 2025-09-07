@@ -1,5 +1,35 @@
 :root {
-  /* Colors */
+  /* Design tokens for catalog mock */
+  --tt-text: #101828;
+  --tt-muted: #475467;
+  --tt-white: #ffffff;
+  --tt-line: #e4e7ec;
+  --tt-bg: #f2f4f7;
+  --tt-gray-300: #dadde1;
+
+  --tt-accent: #e44848;
+  --tt-accent-hover: #d84343;
+  --tt-star: #ffc531;
+
+  --tt-radius-lg: 20px;
+  --tt-radius-md: 12px;
+  --tt-radius-sm: 10px;
+  --tt-radius-pill: 200px;
+
+  --tt-fs-h2: 24px;
+  --tt-lh-h2: 32px;
+  --tt-w-bold: 700;
+  --tt-fs-body: 16px;
+  --tt-lh-body: 24px;
+  --tt-w-med: 500;
+
+  --tt-container: 1200px;
+  --tt-gap-200: 12px;
+  --tt-gap-300: 16px;
+  --tt-gap-400: 24px;
+  --tt-gap-500: 32px;
+
+  /* Legacy colors for backward compatibility */
   --color-main: #101828;
   --color-text: #475467;
   --color-white: #ffffff;
