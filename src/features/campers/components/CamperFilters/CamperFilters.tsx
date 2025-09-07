@@ -100,16 +100,19 @@ export const CamperFilters: React.FC = () => {
 
   // Update URL when location changes
   useEffect(() => {
-    debouncedUpdateFilters({
-      ...currentFilters,
-      location: locationInput || undefined,
-    });
+    if (locationInput !== (currentFilters.location || '')) {
+      debouncedUpdateFilters({
+        ...currentFilters,
+        location: locationInput || undefined,
+      });
+    }
   }, [locationInput, debouncedUpdateFilters, currentFilters]);
 
   const handleTypeChange = (value: string) => {
     const type = value as Filters['type'] || undefined;
     setTypeInput(type || '');
-    debouncedUpdateFilters({
+    // Update immediately for type selection
+    updateFilters({
       ...currentFilters,
       type,
     });
@@ -121,7 +124,8 @@ export const CamperFilters: React.FC = () => {
       : [...featuresInput, feature];
     
     setFeaturesInput(newFeatures);
-    debouncedUpdateFilters({
+    // Update immediately for feature selection
+    updateFilters({
       ...currentFilters,
       features: newFeatures,
     });

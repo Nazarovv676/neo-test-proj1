@@ -1,6 +1,8 @@
+import { Footer } from '@/features/ui/Footer';
+import { Header } from '@/features/ui/Header';
 import { Loader } from '@/shared/components';
 import React, { Suspense } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Outlet, Route, Routes } from 'react-router-dom';
 
 // Lazy load pages for code splitting
 const HomePage = React.lazy(() =>
@@ -30,15 +32,30 @@ const LoadingFallback: React.FC = () => (
   </div>
 );
 
+// Root layout component
+const RootLayout: React.FC = () => {
+  return (
+    <>
+      <Header />
+      <main>
+        <Outlet />
+      </main>
+      <Footer />
+    </>
+  );
+};
+
 export const AppRoutes: React.FC = () => {
   return (
     <Suspense fallback={<LoadingFallback />}>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/catalog" element={<CatalogPage />} />
-        <Route path="/catalog/:id" element={<CamperPage />} />
-        {/* Catch all route - redirect to home */}
-        <Route path="*" element={<HomePage />} />
+        <Route element={<RootLayout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/catalog" element={<CatalogPage />} />
+          <Route path="/catalog/:id" element={<CamperPage />} />
+          {/* Catch all route - redirect to home */}
+          <Route path="*" element={<HomePage />} />
+        </Route>
       </Routes>
     </Suspense>
   );

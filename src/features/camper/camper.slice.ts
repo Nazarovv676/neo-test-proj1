@@ -1,5 +1,6 @@
 import type { Camper, Review } from '@/shared/types';
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import { fetchCamperById } from './camper.thunks';
 
 interface CamperState {
   current: Camper | null;
@@ -40,6 +41,25 @@ const camperSlice = createSlice({
       state.status = 'idle';
       state.error = undefined;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchCamperById.pending, (state) => {
+        state.status = 'loading';
+        state.error = undefined;
+      })
+      .addCase(fetchCamperById.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.current = action.payload;
+        state.reviews = action.payload.reviews || [];
+        state.error = undefined;
+      })
+      .addCase(fetchCamperById.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload || 'Failed to fetch camper';
+        state.current = null;
+        state.reviews = [];
+      });
   },
 });
 

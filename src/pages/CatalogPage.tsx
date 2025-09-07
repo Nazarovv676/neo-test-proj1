@@ -11,8 +11,6 @@ import {
     selectHasMore,
     selectIsLoading,
 } from '@/features/campers/selectors';
-import { Footer } from '@/features/ui/Footer';
-import { Header } from '@/features/ui/Header';
 import { Loader } from '@/shared/components';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/redux';
 import { getFavorites } from '@/shared/lib/favorites';
@@ -71,48 +69,44 @@ export const CatalogPage: React.FC = () => {
 
   return (
     <div className={styles.page}>
-      <Header />
-      <main className={styles.main}>
-        <div className="container">
-          <div className={styles.content}>
-            <div className={styles.sidebar}>
-              <CamperFilters />
+      <div className="container">
+        <div className={styles.content}>
+          <div className={styles.sidebar}>
+            <CamperFilters />
+          </div>
+
+          <div className={styles.results}>
+            <div className={styles.header}>
+              <h1 className={styles.title}>Camper Catalog</h1>
+              {campers.length > 0 && (
+                <p className={styles.count}>
+                  {campers.length}{' '}
+                  {campers.length === 1 ? 'camper' : 'campers'} found
+                </p>
+              )}
             </div>
 
-            <div className={styles.results}>
-              <div className={styles.header}>
-                <h1 className={styles.title}>Camper Catalog</h1>
-                {campers.length > 0 && (
-                  <p className={styles.count}>
-                    {campers.length}{' '}
-                    {campers.length === 1 ? 'camper' : 'campers'} found
-                  </p>
-                )}
+            {hasError && (
+              <div className={styles.error}>
+                <p>Error: {error}</p>
               </div>
+            )}
 
-              {hasError && (
-                <div className={styles.error}>
-                  <p>Error: {error}</p>
-                </div>
-              )}
-
-              {isLoading && campers.length === 0 ? (
-                <div className={styles.loading}>
-                  <Loader size="lg" />
-                </div>
-              ) : (
-                <CamperGrid
-                  campers={campers}
-                  hasMore={hasMore}
-                  loading={isLoading}
-                  onLoadMore={handleLoadMore}
-                />
-              )}
-            </div>
+            {isLoading && campers.length === 0 ? (
+              <div className={styles.loading}>
+                <Loader size="lg" />
+              </div>
+            ) : (
+              <CamperGrid
+                campers={campers}
+                hasMore={hasMore}
+                loading={isLoading}
+                onLoadMore={handleLoadMore}
+              />
+            )}
           </div>
         </div>
-      </main>
-      <Footer />
+      </div>
     </div>
   );
 };
