@@ -65,22 +65,18 @@ export const CamperFilters: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   
   // Parse current filters from URL
-  const currentFilters = parseFiltersFromSearch(searchParams);
+  const urlFilters = useMemo(() => parseFiltersFromSearch(searchParams), [searchParams]);
   
-  // Local state for form inputs
-  const [locationInput, setLocationInput] = useState(currentFilters.location || '');
-  const [typeInput, setTypeInput] = useState(currentFilters.type || '');
-  const [featuresInput, setFeaturesInput] = useState<string[]>(currentFilters.features || []);
+  // Local UI state for controlled inputs
+  const [uiFilters, setUiFilters] = useState<Filters>(urlFilters);
 
-  // Update local state when URL changes
+  // Keep local UI in sync when URL changes externally (back/forward)
   useEffect(() => {
-    setLocationInput(currentFilters.location || '');
-    setTypeInput(currentFilters.type || '');
-    setFeaturesInput(currentFilters.features || []);
-  }, [currentFilters]);
+    setUiFilters(urlFilters);
+  }, [urlFilters]);
 
-  // Debounced update function
-  const updateFilters = useCallback(
+  // Debounced writer to URL
+  const updateUrlFilters = useCallback(
     (newFilters: Filters) => {
       const newParams = buildSearchParamsFromFilters(newFilters);
       const newSerialized = stableSerialize(newParams);
@@ -93,48 +89,41 @@ export const CamperFilters: React.FC = () => {
     [searchParams, setSearchParams]
   );
 
-  const debouncedUpdateFilters = useMemo(
-    () => debounce(updateFilters, 300),
-    [updateFilters]
+  const debouncedUpdateUrl = useMemo(
+    () => debounce(updateUrlFilters, 300),
+    [updateUrlFilters]
   );
 
-  // Update URL when location changes
-  useEffect(() => {
-    if (locationInput !== (currentFilters.location || '')) {
-      debouncedUpdateFilters({
-        ...currentFilters,
-        location: locationInput || undefined,
-      });
-    }
-  }, [locationInput, debouncedUpdateFilters, currentFilters]);
+  // Handle location input changes
+  const handleLocationChange = (value: string) => {
+    const newFilters = { ...uiFilters, location: value || undefined };
+    setUiFilters(newFilters);
+    debouncedUpdateUrl(newFilters);
+  };
 
+  // Handle type selection changes
   const handleTypeChange = (value: string) => {
     const type = value as Filters['type'] || undefined;
-    setTypeInput(type || '');
-    // Update immediately for type selection
-    updateFilters({
-      ...currentFilters,
-      type,
-    });
+    const newFilters = { ...uiFilters, type };
+    setUiFilters(newFilters);
+    updateUrlFilters(newFilters); // Immediate update for selection
   };
 
+  // Handle feature toggle changes
   const handleFeatureToggle = (feature: string) => {
-    const newFeatures = featuresInput.includes(feature)
-      ? featuresInput.filter((f) => f !== feature)
-      : [...featuresInput, feature];
+    const newFeatures = uiFilters.features.includes(feature)
+      ? uiFilters.features.filter((f) => f !== feature)
+      : [...uiFilters.features, feature];
     
-    setFeaturesInput(newFeatures);
-    // Update immediately for feature selection
-    updateFilters({
-      ...currentFilters,
-      features: newFeatures,
-    });
+    const newFilters = { ...uiFilters, features: newFeatures };
+    setUiFilters(newFilters);
+    updateUrlFilters(newFilters); // Immediate update for selection
   };
 
+  // Handle reset filters
   const handleResetFilters = () => {
-    setLocationInput('');
-    setTypeInput('');
-    setFeaturesInput([]);
+    const emptyFilters: Filters = { location: undefined, type: undefined, features: [] };
+    setUiFilters(emptyFilters);
     setSearchParams({}, { replace: true });
   };
 
@@ -152,8 +141,8 @@ export const CamperFilters: React.FC = () => {
           <Input
             label="Location"
             placeholder="Kyiv, Ukraine"
-            value={locationInput}
-            onChange={(e) => setLocationInput(e.target.value)}
+            value={uiFilters.location || ''}
+            onChange={(e) => handleLocationChange(e.target.value)}
             fullWidth
           />
         </div>
@@ -163,7 +152,7 @@ export const CamperFilters: React.FC = () => {
             label="Body type"
             placeholder="Select type"
             options={CAMPER_TYPES}
-            value={typeInput}
+            value={uiFilters.type || ''}
             onChange={(e) => handleTypeChange(e.target.value)}
             fullWidth
           />
@@ -176,7 +165,7 @@ export const CamperFilters: React.FC = () => {
               <Checkbox
                 key={feature.key}
                 label={feature.label}
-                checked={featuresInput.includes(feature.key)}
+                checked={uiFilters.features.includes(feature.key)}
                 onChange={() => handleFeatureToggle(feature.key)}
               />
             ))}
