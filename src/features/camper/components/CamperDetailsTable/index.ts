@@ -1,0 +1,2 @@
+export { CamperDetailsTable } from './CamperDetailsTable';
+
