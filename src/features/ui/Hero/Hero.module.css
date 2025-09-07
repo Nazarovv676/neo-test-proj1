@@ -1,102 +1,38 @@
 .hero {
-  background: linear-gradient(
-    135deg,
-    var(--color-background) 0%,
-    var(--color-background-secondary) 100%
-  );
-  padding: var(--spacing-20) 0;
-  min-height: 600px;
-  display: flex;
-  align-items: center;
+  position: relative;
 }
 
-.content {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--spacing-12);
-  align-items: center;
-}
-
-@media (min-width: 1024px) {
-  .content {
-    grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-16);
-  }
-}
-
-.text {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-6);
-}
-
-.title {
-  font-size: var(--font-size-4xl);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-tight);
-  color: var(--color-text-primary);
-  margin: 0;
-}
-
-@media (min-width: 768px) {
-  .title {
-    font-size: var(--font-size-5xl);
-  }
-}
-
-.highlight {
-  color: var(--color-primary);
-}
-
-.subtitle {
-  font-size: var(--font-size-lg);
-  color: var(--color-text-secondary);
-  line-height: var(--line-height-relaxed);
-  margin: 0;
-  max-width: 500px;
-}
-
-.actions {
-  display: flex;
-  gap: var(--spacing-4);
-  flex-wrap: wrap;
-}
-
-.ctaButton {
-  min-width: 160px;
-}
-
-.image {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.imagePlaceholder {
+.heroMedia img {
+  display: block;
   width: 100%;
-  max-width: 500px;
-  height: 400px;
-  background: linear-gradient(
-    135deg,
-    var(--color-primary) 0%,
-    var(--color-primary-dark) 100%
-  );
-  border-radius: var(--radius-2xl);
+  height: auto;
+}
+
+.heroContent {
+  position: absolute;
+  inset: 0;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-4);
-  color: white;
-  box-shadow: var(--shadow-xl);
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--space-1000);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-600);
 }
 
-.imageIcon {
-  font-size: 4rem;
-}
-
-.imageText {
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-semibold);
+.heroContent h1 {
+  font: 700 var(--h1-size) / var(--h1-line) var(--font-family);
+  color: #f7f7f7;
+  letter-spacing: -0.02em;
   margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.heroContent p {
+  font: 500 var(--h2-size) / var(--h2-line) var(--font-family);
+  color: #f7f7f7;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }

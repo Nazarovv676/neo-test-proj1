@@ -1,24 +1,28 @@
 .header {
-  background-color: var(--color-background);
-  border-bottom: 1px solid var(--color-border);
   position: sticky;
   top: 0;
-  z-index: var(--z-sticky);
-  backdrop-filter: blur(8px);
-  background-color: rgba(255, 255, 255, 0.95);
+  z-index: 1000;
+  background: var(--color-inputs);
+  border-bottom: 1px solid var(--color-badges);
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
 }
 
 .content {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr; /* left | center | right */
   align-items: center;
-  justify-content: space-between;
-  padding: var(--spacing-4) 0;
+  width: 100%;
+  height: var(--header-height);
+  padding: 0 24px;
 }
 
+/* Logo on the left */
 .logo {
+  justify-self: start;
   display: flex;
   align-items: center;
-  gap: var(--spacing-2);
   text-decoration: none;
   color: var(--color-text-primary);
   font-weight: var(--font-weight-bold);
@@ -38,10 +42,17 @@
   font-family: var(--font-family-heading);
 }
 
+/* Navigation in the center */
 .nav {
+  justify-self: center;
+}
+
+.nav ul {
   display: flex;
-  align-items: center;
-  gap: var(--spacing-6);
+  gap: var(--space-400);
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .navLink {
@@ -62,4 +73,14 @@
 .navLink:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
+}
+
+/* Active link (red) */
+.active {
+  color: var(--color-danger, #e74c3c);
+}
+
+/* Right side placeholder */
+.right {
+  justify-self: end;
 }

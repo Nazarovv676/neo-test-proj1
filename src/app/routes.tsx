@@ -1,4 +1,3 @@
-import { Footer } from '@/features/ui/Footer';
 import { Header } from '@/features/ui/Header';
 import { Loader } from '@/shared/components';
 import React, { Suspense } from 'react';
@@ -40,7 +39,6 @@ const RootLayout: React.FC = () => {
       <main>
         <Outlet />
       </main>
-      <Footer />
     </>
   );
 };

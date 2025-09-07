@@ -1,5 +1,17 @@
 :root {
   /* Colors */
+  --color-main: #101828;
+  --color-text: #475467;
+  --color-white: #ffffff;
+  --color-inputs: #f7f7f7;
+  --color-badges: #f2f4f7;
+  --color-gray: #6c717b;
+  --color-gray-light: #dadde1;
+  --color-button: #e44848;
+  --color-button-hover: #d84343;
+  --color-rating: #ffc531;
+
+  /* Legacy color mappings for existing components */
   --color-primary: #e44848;
   --color-primary-dark: #d84343;
   --color-primary-light: #ff6b6b;
@@ -26,10 +38,18 @@
   --color-warning: #f79009;
 
   /* Typography */
+  --font-family: 'Inter', sans-serif;
   --font-family-primary:
     'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-family-heading:
     'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  --h1-size: 48px;
+  --h1-line: 56px;
+  --h2-size: 24px;
+  --h2-line: 32px;
+  --body-size: 16px;
+  --body-line: 24px;
 
   --font-size-xs: 0.75rem; /* 12px */
   --font-size-sm: 0.875rem; /* 14px */
@@ -51,6 +71,15 @@
   --line-height-relaxed: 1.75;
 
   /* Spacing */
+  --space-100: 8px;
+  --space-200: 12px;
+  --space-300: 16px;
+  --space-400: 24px;
+  --space-500: 32px;
+  --space-600: 40px;
+  --space-800: 52px;
+  --space-1000: 64px;
+
   --spacing-1: 0.25rem; /* 4px */
   --spacing-2: 0.5rem; /* 8px */
   --spacing-3: 0.75rem; /* 12px */
@@ -65,8 +94,10 @@
   --spacing-24: 6rem; /* 96px */
 
   /* Border radius */
+  --radius-pill: 200px;
+  --radius-md: 12px;
+
   --radius-sm: 0.25rem; /* 4px */
-  --radius-md: 0.375rem; /* 6px */
   --radius-lg: 0.5rem; /* 8px */
   --radius-xl: 0.75rem; /* 12px */
   --radius-2xl: 1rem; /* 16px */
@@ -95,4 +126,8 @@
   --z-popover: 1060;
   --z-tooltip: 1070;
   --z-toast: 1080;
+
+  /* Layout */
+  --container-max: 1200px;
+  --header-height: 80px;
 }

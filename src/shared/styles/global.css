@@ -124,19 +124,46 @@ button {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 var(--spacing-4);
+  width: 100%;
 }
 
-@media (min-width: 768px) {
-  .container {
-    padding: 0 var(--spacing-6);
-  }
+/* Button utilities */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 60px;
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  font: 500 var(--body-size) / var(--body-line) var(--font-family);
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
 }
 
-@media (min-width: 1024px) {
-  .container {
-    padding: 0 var(--spacing-8);
-  }
+.btn-primary {
+  background: var(--color-button);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background: var(--color-button-hover);
+}
+
+/* Navigation utilities */
+.nav-link {
+  font: 500 var(--body-size) / var(--body-line) var(--font-family);
+  color: var(--color-main);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.nav-link.is-active {
+  color: var(--color-button-hover);
+}
+
+.nav-link:hover {
+  color: var(--color-button-hover);
 }
 
 /* Loading states */
