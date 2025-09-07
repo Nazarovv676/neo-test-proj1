@@ -1,14 +1,19 @@
 .container {
+  background: var(--tt-white);
+  border: 1px solid var(--tt-line);
+  border-radius: var(--tt-radius-lg);
+  padding: var(--tt-gap-400);
   display: flex;
   flex-direction: column;
-  gap: var(--tt-gap-600);
+  gap: var(--tt-gap-500);
 }
 
 .title {
-  font-size: var(--tt-fs-xl);
+  font-size: var(--tt-fs-h2);
   font-weight: var(--tt-w-bold);
   color: var(--tt-text);
   margin: 0;
+  line-height: var(--tt-lh-h2);
 }
 
 .empty {
@@ -22,7 +27,7 @@
   align-items: center;
   padding: var(--tt-gap-400);
   background-color: var(--tt-bg);
-  border-radius: var(--tt-radius-lg);
+  border-radius: var(--tt-radius-md);
   border: 1px solid var(--tt-line);
 }
 
@@ -41,7 +46,7 @@
   padding: var(--tt-gap-400);
   background-color: var(--tt-white);
   border: 1px solid var(--tt-line);
-  border-radius: var(--tt-radius-lg);
+  border-radius: var(--tt-radius-md);
 }
 
 .reviewHeader {
@@ -70,17 +75,18 @@
 .reviewerInfo {
   display: flex;
   flex-direction: column;
-  gap: var(--tt-gap-100);
+  gap: var(--tt-gap-200);
 }
 
 .reviewerName {
-  font-size: var(--tt-fs-sm);
+  font-size: var(--tt-fs-body);
   font-weight: var(--tt-w-bold);
   color: var(--tt-text);
+  line-height: var(--tt-lh-body);
 }
 
 .comment {
-  font-size: var(--tt-fs-sm);
-  color: var(--tt-muted);
-  line-height: 1.75;
+  font-size: var(--tt-fs-body);
+  color: var(--tt-text);
+  line-height: var(--tt-lh-body);
 }

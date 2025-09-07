@@ -16,8 +16,8 @@ const VEHICLE_EQUIPMENT = [
 ];
 
 const VEHICLE_TYPES = [
-  { key: 'van', label: 'Van', icon: '🚐' },
-  { key: 'fully-integrated', label: 'Fully Integrated', icon: '🏠' },
+  { key: 'fullyIntegrated', label: 'Fully Integrated', icon: '🏠' },
+  { key: 'panelTruck', label: 'Panel Truck', icon: '🚐' },
   { key: 'alcove', label: 'Alcove', icon: '🏕️' },
 ];
 

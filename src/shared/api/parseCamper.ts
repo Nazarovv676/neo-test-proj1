@@ -105,7 +105,7 @@ const getAdultsFromForm = (form: string): number => {
   const formLower = form.toLowerCase();
   if (formLower.includes('large') || formLower.includes('family')) return 6;
   if (formLower.includes('small') || formLower.includes('panel')) return 2;
-  return 4; // Default for alcove, fully-integrated
+  return 4; // Default for alcove, fullyIntegrated
 };
 
 /**

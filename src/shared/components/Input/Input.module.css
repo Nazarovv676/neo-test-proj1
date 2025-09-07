@@ -23,9 +23,10 @@
 
 .input {
   width: 100%;
-  padding: var(--tt-gap-300) var(--tt-gap-400);
+  height: 44px;
+  padding: 12px 16px;
   border: 1px solid var(--tt-line);
-  border-radius: var(--tt-radius-lg);
+  border-radius: var(--tt-radius-md);
   font-size: var(--tt-fs-body);
   line-height: var(--tt-lh-body);
   color: var(--tt-text);
@@ -37,10 +38,9 @@
   color: var(--tt-muted);
 }
 
-.input:focus {
-  outline: none;
-  border-color: var(--tt-accent);
-  box-shadow: 0 0 0 3px rgba(228, 72, 72, 0.1);
+.input:focus-visible {
+  outline: 2px solid var(--tt-accent);
+  outline-offset: 2px;
 }
 
 .input:disabled {
@@ -53,9 +53,9 @@
   border-color: #f04438;
 }
 
-.input.error:focus {
-  border-color: #f04438;
-  box-shadow: 0 0 0 3px rgba(240, 68, 56, 0.1);
+.input.error:focus-visible {
+  outline: 2px solid #f04438;
+  outline-offset: 2px;
 }
 
 .input.withStartIcon {

@@ -7,12 +7,11 @@ import {
   CamperGallery,
   Reviews,
 } from '@/features/camper/components';
-import { Badge, Loader, Rating } from '@/shared/components';
+import { Loader, Rating } from '@/shared/components';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/redux';
 import {
   calcAverageRating,
   formatPrice,
-  getAvailableFeatures,
 } from '@/shared/lib';
 import type { BookingPayload } from '@/shared/types';
 import React, { useEffect, useState } from 'react';
@@ -80,11 +79,10 @@ export const CamperPage: React.FC = () => {
   }
 
   const averageRating = calcAverageRating(camper.reviews);
-  const features = getAvailableFeatures(camper);
 
   return (
     <div className={styles.page}>
-      <div className="container">
+      <div className="container stack stack--24">
         <div className={styles.content}>
           <div className={styles.mainContent}>
             {/* Header */}
@@ -112,22 +110,6 @@ export const CamperPage: React.FC = () => {
             {/* Gallery */}
             <div className={styles.gallery}>
               <CamperGallery images={camper.gallery} name={camper.name} />
-            </div>
-
-            {/* Features */}
-            <div className={styles.features}>
-              <div className={styles.featureBadges}>
-                {features.slice(0, 6).map((feature) => (
-                  <Badge key={feature} variant="primary" size="md">
-                    {feature}
-                  </Badge>
-                ))}
-                {features.length > 6 && (
-                  <Badge variant="secondary" size="md">
-                    +{features.length - 6} more
-                  </Badge>
-                )}
-              </div>
             </div>
 
             {/* Tabs */}

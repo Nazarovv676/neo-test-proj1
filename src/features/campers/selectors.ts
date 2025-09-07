@@ -63,10 +63,9 @@ export const selectFilteredCampers = createSelector(
       // Type filter - map domain type to camper form
       if (filters.type) {
         const formMapping: Record<string, string> = {
-          'van': 'panelTruck',
-          'fully-integrated': 'fullyIntegrated',
-          'alcove': 'alcove',
+          'fullyIntegrated': 'fullyIntegrated',
           'panelTruck': 'panelTruck',
+          'alcove': 'alcove',
         };
         
         const expectedForm = formMapping[filters.type];

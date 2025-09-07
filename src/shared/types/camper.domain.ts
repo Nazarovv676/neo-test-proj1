@@ -53,7 +53,7 @@ export interface Review {
 
 export interface Filters {
   location?: string;
-  type?: 'van' | 'fully-integrated' | 'alcove' | 'panelTruck';
+  type?: 'fullyIntegrated' | 'panelTruck' | 'alcove';
   features: string[];
 }
 
@@ -77,7 +77,7 @@ export interface ApiResponse<T> {
   message?: string;
 }
 
-export type CamperType = 'van' | 'fully-integrated' | 'alcove' | 'panelTruck';
+export type CamperType = 'fullyIntegrated' | 'panelTruck' | 'alcove';
 
 export type FeatureKey = 
   | 'airConditioner'
