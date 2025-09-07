@@ -18,10 +18,6 @@ export const selectPagination = createSelector(
   (campers) => campers.pagination
 );
 
-export const selectFavorites = createSelector(
-  [selectCampersState],
-  (campers) => campers.favorites
-);
 
 export const selectIsLoading = createSelector(
   [selectPagination],

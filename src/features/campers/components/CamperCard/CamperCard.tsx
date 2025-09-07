@@ -1,4 +1,4 @@
-import { toggleFavorite } from '@/features/campers/campers.slice';
+import { selectFavoritesHydrated, toggle } from '@/features/favorites/favorites.slice';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/redux';
 import { formatPrice, getAvailableFeatures } from '@/shared/lib';
 import type { Camper } from '@/shared/types';
@@ -12,15 +12,16 @@ interface CamperCardProps {
 
 export const CamperCard: React.FC<CamperCardProps> = ({ camper }) => {
   const dispatch = useAppDispatch();
-  const favorites = useAppSelector((state) => state.campers.favorites);
+  const favorites = useAppSelector((state) => state.favorites.ids);
+  const hydrated = useAppSelector(selectFavoritesHydrated);
 
-  const isFavorite = favorites.includes(camper.id);
+  const isFavorite = hydrated && favorites.includes(camper.id);
   const features = getAvailableFeatures(camper);
 
   const handleToggleFavorite = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    dispatch(toggleFavorite(camper.id));
+    dispatch(toggle(camper.id));
   };
 
 

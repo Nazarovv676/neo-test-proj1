@@ -75,6 +75,8 @@
 
 .iconBtn[aria-pressed='true'] {
   color: var(--tt-accent);
+  border-color: var(--tt-accent);
+  background: rgba(var(--tt-accent-rgb), 0.1);
 }
 
 .cardMeta {

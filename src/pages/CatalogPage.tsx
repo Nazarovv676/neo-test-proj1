@@ -1,19 +1,18 @@
-import { resetList, setFavorites } from '@/features/campers/campers.slice';
+import { resetList } from '@/features/campers/campers.slice';
 import {
-    fetchCampers,
-    fetchMoreCampers,
+  fetchCampers,
+  fetchMoreCampers,
 } from '@/features/campers/campers.thunks';
 import { CamperFilters, CamperGrid } from '@/features/campers/components';
 import {
-    selectCampers,
-    selectError,
-    selectHasError,
-    selectHasMore,
-    selectIsLoading,
+  selectCampers,
+  selectError,
+  selectHasError,
+  selectHasMore,
+  selectIsLoading,
 } from '@/features/campers/selectors';
 import { Loader } from '@/shared/components';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/redux';
-import { getFavorites } from '@/shared/lib/favorites';
 import type { Filters } from '@/shared/types';
 import React, { useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
@@ -51,11 +50,6 @@ export const CatalogPage: React.FC = () => {
     [filters]
   );
 
-  // Load favorites from localStorage on mount
-  useEffect(() => {
-    const savedFavorites = getFavorites();
-    dispatch(setFavorites(savedFavorites));
-  }, [dispatch]);
 
   // Fetch campers when URL filters change
   useEffect(() => {

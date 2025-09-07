@@ -6,7 +6,6 @@ interface CampersState {
   list: Camper[];
   filters: Filters;
   pagination: PaginationState;
-  favorites: string[];
 }
 
 const initialState: CampersState = {
@@ -20,7 +19,6 @@ const initialState: CampersState = {
     hasMore: true,
     status: 'idle',
   },
-  favorites: [],
 };
 
 const campersSlice = createSlice({
@@ -75,19 +73,6 @@ const campersSlice = createSlice({
     },
     clearError: (state) => {
       state.pagination.error = undefined;
-    },
-    setFavorites: (state, action: PayloadAction<string[]>) => {
-      state.favorites = action.payload;
-    },
-    toggleFavorite: (state, action: PayloadAction<string>) => {
-      const camperId = action.payload;
-      const index = state.favorites.indexOf(camperId);
-
-      if (index === -1) {
-        state.favorites.push(camperId);
-      } else {
-        state.favorites.splice(index, 1);
-      }
     },
     resetFilters: (state) => {
       state.filters = {
@@ -154,8 +139,6 @@ export const {
   setStatus,
   setError,
   clearError,
-  setFavorites,
-  toggleFavorite,
   resetFilters,
   resetList,
 } = campersSlice.actions;
